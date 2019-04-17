@@ -1,0 +1,43 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  letter-spacing: .03em;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+nav {
+  background-color: #242424;
+  width: 100%;
+  height: 2em;
+  margin: 0;
+  padding-top: .5em;
+  color: #fc5a7b;
+  font-size: 17px;
+  position: sticky;
+  top: 0;
+}
+
+/*text logo*/
+#logo {
+  margin-left: 1em;
+  float: left;
+  color: #fc5a7b;
+}
+
+/*login / name*/
+#loginOrName {
+  margin-right: 1em;
+  float: right;
+}
+
+#siteIntro {
+  width: 100%;
+  height: 40em;
+  background-color: #353535;
+}

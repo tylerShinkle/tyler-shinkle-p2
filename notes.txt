@@ -1,3 +1,96 @@
+Tyler Shinkle
+ITDEV-160-900
+Project 2 Requirements Document
+4/30/2019
+
+Project Description
+	This website is a beginner’s tutorial for jQuery entitled JQuery Jumpstart. It will teach new developers how to get started with JQuery through 5 simple tutorials. The header will have the title as a link to the top of the page as well as a link to a ‘dummy’ login page which will set the users name in the right hand corner in place of the login link when used. The first content div will be an introduction to the site. The second content div will be an intro to jQuery and the final div will contain the tutorials. These tutorials will be displayed one by one and the user will be able to navigate back and forth between them in a sequential manner. The site should be simple to use and easy to understand. 
+
+Feature List / Technical Tasks
+Title / Link to top of page.
+-	The title will be dynamically inserted as into a div via a DOM reference (encapsulated by a link <a>).
+-	This link will set the viewport to the top of the page via a href to an id.
+‘Dummy’ login page
+-	The login page ‘button’ will be dynamically inserted into a div via a DOM reference.
+-	This button will change the display property of the login overlay (by changing the display of the .top class) so it is visible. (When a variable known as logged_in is false. {it will be initialized as a global to false.}). 
+-	The login overlay inputs for username and password will be dynamically injected but initially have a display of none. Both fields will be referenced by a java script variable. An exit ‘button ‘ (which sets display back to none) and a unique login button will be part of this overlay. The login button will…
+o	Check the min /max characters 
+o	Hide the overlay and change the login text to whatever text the username is set to when character requirements are met (logged_in variable is then set to true).
+o	Sends message to users for character requirement failures. 
+?	If one field does not meet the character requirements a ‘warning’ paragraph will be inserted under the input field. If both fail, both warnings will be inserted.
+?	This will be done by calling a function which checks the content of the two DOM input fields using the .length function. 
+-	 When ‘logged in’ the name will take the place of the login link, this will be done by replacing the text of the login button via the text content property. 
+-	The same event / function for loading the login overlay will be used to ‘log –out’. The functions behavior depends upon the value of logged_in. (if statement) 
+-When the user ‘logs out’ the text content will be set back to “login” and logged_in will be set to false. 
+
+
+
+Site introduction
+
+-	The site introduction will be dynamically inserted into a div, one h2 element and one p element. 
+-	These will always remain static.
+-	The process for loading all content will be explained later. 
+
+JQuery introduction
+
+-	The jQuery introduction will have no technical differences from the site introduction.
+-	The process of dynamically loading this content will be explained below.
+-	Each div should be visually ‘chunked’
+
+JQuery tutorial ‘Slides
+
+-	This is the basis for this site, the first ‘slide’ will be dynamically inserted into a div as an h2 and a paragraph (possibly an iframe) when the site initializes.
+-	There will be two buttons, back and forward, to navigate between the 5 tutorials. These buttons will also be dynamically inserted upon initialization. (with their event listeners)
+-	The event listeners for these buttons will change a variable known as slideStatus which is initialized as a global at 1 and then pass the altered slideStatus to another function to load the new slide.
+-	A function known as changeSlide will alter this variable or not depending on the context. (an event object will be necessary to see if the target / src is either the forward or backward button) 
+       o	eg: (inside event handler / pseudo code)
+                buttonSelection=e.target||e.srcElement (output of function getTarget)
+                changeSlide(buttonSelection,slideStatus);
+-	If forward is pressed it will increment this variable by 1 unless it is 5, in which case it will not increment. (just return)
+-	If back is pressed it will decrement this variable by 1 unless it is 1, in which case it will not decrement.(just return)
+-	This variable (slideStatus) is then passed to a function which will load the correct slide via a switch statement. (this switch statement will reference the main content array)
+-	The proper DOM elements will then be referenced and injected with the proper data from our content array with the generateContent function which is explained below.
+
+
+How This Site is Initialized
+
+(Before initialization)
+-set global variables (logged_in and slideStatus)
+-create contentArray (all text)
+
+Init()
+
+-creates a for loop from 0-n.(n being the last index of contentArray to be loaded in the first page).
+o	For each increment of the for loop a function known as generateContent will be called with the index (increment value) passed to it.
+o	Each div intended for content will have an id such as contenti.(I will be the index associated with it’s desired content. 
+o	The generateContent function will set a variable to the contentArray[i] and alter the textContent propertyof this variable. (via createTextNode and appendChild)
+
+-creates all of the event listeners by calling a function similar to this…
+
+function addEvent(evnt, elem, func) {
+   if (elem.addEventListener)  // W3C DOM
+      elem.addEventListener(evnt,func,false);
+   else if (elem.attachEvent) { // IE DOM
+      elem.attachEvent("on"+evnt, func);
+   }
+   else { // No much to do
+      elem["on"+evnt] = func;
+   }
+}
+
+o	Here is the list of event listeners…
+?	The login / logout button  (the one on the overlay and after the name is clicked)
+?	The entry to the login / logout buttons.
+?	The forward button for the tutorials.
+?	The backward button for the tutorials.
+
+
+
+
+
+
+
+******************************************************************************************************************************************
 ITDEV 160
 Project 2 Notes / Brainstorming
 
@@ -63,5 +156,8 @@ function addEvent(evnt, elem, func) {
       elem["on"+evnt] = func;
    }
 }
+
+
+
 
 		
