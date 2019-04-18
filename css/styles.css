@@ -1,9 +1,12 @@
+/*for mobile*/
 body {
   padding: 0;
   margin: 0;
   font-family: "Lato", sans-serif;
+  font-size: 30px;
   letter-spacing: .035em;
   line-height: 1.5;
+  color: #fff;
 }
 
 a {
@@ -12,22 +15,22 @@ a {
 }
 
 nav {
-  background-color: #242424;
+  background-color: #181818;
   width: 100%;
   height: 2em;
   margin: 0;
   padding-top: .5em;
-  color: #fc5a7b;
-  font-size: 17px;
+  color: #fff;
   position: sticky;
   top: 0;
+  border-bottom: 2px solid white;
 }
 
 /*text logo*/
 #logo {
   margin-left: 1em;
   float: left;
-  color: #fc5a7b;
+  color: #fff;
 }
 
 /*login / name*/
@@ -36,14 +39,39 @@ nav {
   float: right;
 }
 
+a:hover, #logo:hover, #loginOrName:hover {
+  color: #ff4da6;
+  cursor: pointer;
+}
+
 #siteIntro {
+  text-align: center;
   width: 100%;
-  height: 40em;
-  background-color: #353535;
 }
 
 #jQueryIntro {
   width: 100%;
-  height: 40em;
-  background-color: #242424;
+}
+
+.content {
+  border-bottom: 2px solid white;
+  width: 100%;
+  height: 550px;
+  background-color: #181818;
+  padding: 2em 0;
+}
+
+.heading {
+  font-size: 40px;
+  text-align: center;
+}
+
+.contentText {
+  text-align: justify;
+  text-justify: inter-word;
+  margin: 2em 30px;
+}
+
+.links {
+  margin: 3em;
 }
