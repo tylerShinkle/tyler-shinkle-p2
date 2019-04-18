@@ -44,6 +44,11 @@ a:hover, #logo:hover, #loginOrName:hover {
   cursor: pointer;
 }
 
+a:active, #logo:active, #loginOrName:active {
+  color: #ff4da6;
+  opacity: .75;
+}
+
 #siteIntro {
   text-align: center;
   width: 100%;
