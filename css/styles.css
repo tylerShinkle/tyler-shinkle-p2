@@ -105,6 +105,7 @@ a:active, #logo:active, #loginOrName:active {
   color: #ff4da6;
 }
 
+/*blah*/
 #exitOverlay:active {
   color: #ff4da6;
   opacity: .75;
