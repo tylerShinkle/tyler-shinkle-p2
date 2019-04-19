@@ -102,6 +102,12 @@ a:active, #logo:active, #loginOrName:active {
 
 #exitOverlay:hover {
   cursor: pointer;
+  color: #ff4da6;
+}
+
+#exitOverlay:active {
+  color: #ff4da6;
+  opacity: .75;
 }
 
 #usernameContainer, #pwContainer {
