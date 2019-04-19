@@ -1,10 +1,16 @@
+//globals
+//array to hold conent objects // consider adding namespace to eliminate globals.
+var contentArray = [];
+var loggedIn = false;
+//end globals
+
 //content object constructor
 function Content(textContent, containerId) {
   this.textContent = textContent;
   this.containerId = containerId;
 }
-//array to hold conent objects
-var contentArray = [];
+//end constructor
+
 //create content objects with constructor
 var logo = new Content("jQuery jumpstart", "logo");
 var loginOrName = new Content("login", "loginOrName")
@@ -14,13 +20,31 @@ var jQueryIntroHeading = new Content("What is jQuery?", "jQueryIntroHeading");
 var jQueryIntroText = new Content("A framework in regards to software development is essentially a library of code, but with added features that allow users to easily implement and interact with the items in the library. JQuery is a Java Script framework, it allows users to do certain things with HTML, CSS and Java Script much easier and faster than they'd be able to with just Java Script alone. ", "jQueryIntroText");
 //push everything into an array.
 contentArray.push(logo, loginOrName, welcome, siteIntroText, jQueryIntroHeading, jQueryIntroText);
+//end creating objects and loading array
 
 //page creation begins here
 function init() {
   for (var i = 0; i < contentArray.length; i++) {
     generateContent(i);
   }
+  //add event handlers support old IE
+  //login link to trigger overlays
+  var loginOrName = document.getElementById('loginOrName');
+  if (loginOrName.addEventListener) {
+    loginOrName.addEventListener('click', loginOrOut, false);
+  } else {
+    loginOrName.attachEvent('onclick', loginOrOut);
+  }
+  //exit button for login overlay
+  var exitOverlay = document.getElementById('exitOverlay');
+  if (exitOverlay.addEventListener) {
+    exitOverlay.addEventListener('click', hideOverlay, false);
+  } else {
+    exitOverlay.attachEvent('onclick', hideOverlay);
+  }
+
 }
+// end init
 
 //load content into page.
 function generateContent(index) {
@@ -28,6 +52,26 @@ function generateContent(index) {
   var content = document.createTextNode(contentArray[index].textContent);
   container.appendChild(content);
 }
+//end generate function
+
+//function for login / name div. shows login overlay or logout overlay. (logged out will be changed by the login button on the overlay.)
+function loginOrOut() {
+  if (loggedIn == false) {
+    var overlay = document.getElementById('loginOverlay');
+    overlay.style.display = "block";
+  } else {
+    //make window for logout and set its display here.
+    alert("Goodbye");
+  }
+}
+//end loginOrOut
+
+//exit login overlay
+function hideOverlay() {
+  var overlay = document.getElementById('loginOverlay');
+  overlay.style.display = "none";
+}
 
 //start
 init();
+//
