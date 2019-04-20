@@ -5,8 +5,8 @@ body {
   font-family: "Lato", sans-serif;
   font-size: 30px;
   letter-spacing: .035em;
-  line-height: 1.5;
   color: #fff;
+  background-color: #181818;
 }
 
 a {
@@ -17,12 +17,14 @@ a {
 nav {
   background-color: #181818;
   width: 100%;
-  height: 2em;
-  margin: 0;
+  font-size: 1.5em;
+  min-height: 2em;
   padding-top: .5em;
+  margin: 0;
   color: #fff;
-  position: sticky;
+  position: fixed;
   top: 0;
+  z-index: 1;
   border-bottom: 2px solid white;
 }
 
@@ -52,6 +54,7 @@ a:active, #logo:active, #loginOrName:active {
 #siteIntro {
   text-align: center;
   width: 100%;
+  margin-top: 4em;
 }
 
 #jQueryIntro {
@@ -61,48 +64,106 @@ a:active, #logo:active, #loginOrName:active {
 .content {
   border-bottom: 2px solid white;
   width: 100%;
-  height: 550px;
+  min-height: 10em;
   background-color: #181818;
-  padding: 2em 0;
+  padding: 3em 0;
+  text-align: center;
 }
 
 .heading {
-  font-size: 40px;
+  font-size: 1.5em;
   text-align: center;
 }
 
 .contentText {
   text-align: justify;
-  text-justify: inter-word;
-  margin: 2em 30px;
+  justify-content: inter-word;
+  margin: 2em auto;
+  padding: 0 1em;
+  max-width: 40em;
+  line-height: 1.5;
+  font-size: 1em;
 }
 
 .links {
-  margin: 3em;
+  margin: 1.5em;
 }
 
 /*for overlay*/
 #loginOverlay {
   width: 100%;
   height: 100%;
-  position: fixed;
-  z-index: 1;
+  position: absolute;
+  top: 0;
+  z-index: 2;
   display: none;
   text-align: center;
   background-color: #181818;
 }
 
+#overlayMiddle {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  padding: 0;
+}
+
+#overlayLogo {
+  font-size: 2em;
+  position: relative;
+  display: block;
+}
+
+#usernameContainer, #pwContainer {
+  display: block;
+  margin: 2em;
+}
+
+#buttonContainer {
+  width: 70%;
+  padding: .5em;
+  margin: 0 15%;
+}
+
 #exitOverlay {
+  /*
   display: inline-block;
   position: absolute;
-  top: 3vmin;
-  right: 4vmin;
-  font-size: 1.25em;
+  top: 5vmin;
+  right: 5vmin;
+  font-size: 3em;
+  */
+  width: 4em;
+  float: right;
+  font-size: 2em;
+  border: 2px solid white;
+  padding: .5em;
+  border-radius: 20px;
+}
+
+#loginButton {
+  width: 4em;
+  float: left;
+  font-size: 2em;
+  border: 2px solid white;
+  padding: .5em;
+  border-radius: 20px;
 }
 
 #exitOverlay:hover {
   cursor: pointer;
   color: #ff4da6;
+}
+
+#loginButton:hover {
+  cursor: pointer;
+  color: #ff4da6;
+  border: 2px solid #ff4da6;
+  border-radius: 25px;
+}
+
+#loginButton:active {
+  opacity: .75;
 }
 
 /*blah*/
@@ -111,13 +172,12 @@ a:active, #logo:active, #loginOrName:active {
   opacity: .75;
 }
 
-#usernameContainer, #pwContainer {
-  display: block;
-  position: relative;
-  top: 30%;
-  margin: 1em;
+#userNameText, #pwText {
+  font-size: 2em;
 }
 
-#userNameText, #pwText {
-  font-size: 30px;
+label {
+  font-size: 2em;
 }
+
+/*tablets*/

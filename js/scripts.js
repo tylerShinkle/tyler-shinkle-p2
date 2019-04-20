@@ -58,7 +58,11 @@ function generateContent(index) {
 function loginOrOut() {
   if (loggedIn == false) {
     var overlay = document.getElementById('loginOverlay');
-    overlay.style.display = "block";
+    var nav = document.getElementById('nav');
+    var main = document.getElementById('main');
+    main.style.display = "none";
+    nav.style.display = "none";
+    overlay.style.display = "table";
   } else {
     //make window for logout and set its display here.
     alert("Goodbye");
@@ -69,7 +73,17 @@ function loginOrOut() {
 //exit login overlay
 function hideOverlay() {
   var overlay = document.getElementById('loginOverlay');
+  var nav = document.getElementById('nav');
+  var main = document.getElementById('main');
+  var un = document.getElementById('userNameText');
+  var pw = document.getElementById('pwText');
+  main.style.display = "block";
+  nav.style.display = "block";
   overlay.style.display = "none";
+  pw.value = "";
+  un.value = "";
+  //clear text fields of overlay
+
 }
 
 //start
