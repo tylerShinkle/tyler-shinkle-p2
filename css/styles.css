@@ -3,7 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Lato", sans-serif;
-  font-size: 30px;
+  font-size: 16px;
   letter-spacing: .035em;
   color: #fff;
   background-color: #181818;
@@ -17,7 +17,7 @@ a {
 nav {
   background-color: #181818;
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.25em;
   min-height: 2em;
   padding-top: .5em;
   margin: 0;
@@ -30,14 +30,14 @@ nav {
 
 /*text logo*/
 #logo {
-  margin-left: 1em;
+  margin-left: .5em;
   float: left;
   color: #fff;
 }
 
 /*login / name*/
 #loginOrName {
-  margin-right: 1em;
+  margin-right: .5em;
   float: right;
 }
 
@@ -109,20 +109,21 @@ a:active, #logo:active, #loginOrName:active {
 }
 
 #overlayLogo {
-  font-size: 2em;
+  font-size: 1.5em;
   position: relative;
   display: block;
+  margin-top: .25em;
 }
 
 #usernameContainer, #pwContainer {
   display: block;
-  margin: 2em;
+  margin: 2em 0;
 }
 
 #buttonContainer {
-  width: 70%;
+  width: 18em;
   padding: .5em;
-  margin: 0 15%;
+  margin: .25em auto;
 }
 
 #exitOverlay {
@@ -135,7 +136,7 @@ a:active, #logo:active, #loginOrName:active {
   */
   width: 4em;
   float: right;
-  font-size: 2em;
+  font-size: 1.5em;
   border: 2px solid white;
   padding: .5em;
   border-radius: 20px;
@@ -144,7 +145,7 @@ a:active, #logo:active, #loginOrName:active {
 #loginButton {
   width: 4em;
   float: left;
-  font-size: 2em;
+  font-size: 1.5em;
   border: 2px solid white;
   padding: .5em;
   border-radius: 20px;
@@ -173,11 +174,12 @@ a:active, #logo:active, #loginOrName:active {
 }
 
 #userNameText, #pwText {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 label {
-  font-size: 2em;
+  font-size: 1.5em;
+  display: block;
 }
 
 /*tablets*/
