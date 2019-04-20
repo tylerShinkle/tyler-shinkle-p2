@@ -8,6 +8,12 @@ var loggedIn = false;
 function Content(textContent, containerId) {
   this.textContent = textContent;
   this.containerId = containerId;
+  this.generate = function(someContent) {
+    var container = document.getElementById(containerId);
+    container.textContent = "";
+    var content = document.createTextNode(someContent);
+    container.appendChild(content);
+  }
 }
 //end constructor
 
@@ -17,7 +23,7 @@ var loginOrName = new Content("login", "loginOrName")
 var welcome = new Content("Welcom to jQuery jumpstart!", "siteIntroHeading");
 var siteIntroText = new Content("This site is intended to give you everything you need to start programming in jQuery provided you already know HTML, CSS and Java Script. It is not the end all be all to learning the language but more of a concise and effective way to start you off on experimenting with jQuery. Our 5 simple tutorials are on the bottom of the page. For more intensive tutorials and resources click one of the links below. Have fun!", "siteIntroText");
 var jQueryIntroHeading = new Content("What is jQuery?", "jQueryIntroHeading");
-var jQueryIntroText = new Content("A framework in regards to software development is essentially a library of code, but with added features that allow users to easily implement and interact with the items in the library. JQuery is a Java Script framework, it allows users to do certain things with HTML, CSS and Java Script much easier and faster than they'd be able to with just Java Script alone. ", "jQueryIntroText");
+var jQueryIntroText = new Content("A framework in regards to software development is essentially a library of code, but with added features that allow users to easily implement and interact with the items in the library. JQuery is a Java Script framework, it allows users to do certain things with HTML, CSS and Java Script much easier and faster than they'd be able to with just Java Script alone. To learn more click on the link below. We'll teach you how to get started in the tutorials near the bottom of the page. Enjoy!", "jQueryIntroText");
 //push everything into an array.
 contentArray.push(logo, loginOrName, welcome, siteIntroText, jQueryIntroHeading, jQueryIntroText);
 //end creating objects and loading array
@@ -41,6 +47,13 @@ function init() {
     exitOverlay.addEventListener('click', hideOverlay, false);
   } else {
     exitOverlay.attachEvent('onclick', hideOverlay);
+  }
+  //login button for overlays
+  var loginButton = document.getElementById('loginButton');
+  if (loginButton.addEventListener) {
+    loginButton.addEventListener('click', login, false);
+  } else {
+    loginButton.attachEvent('onclick', login);
   }
 
 }
@@ -80,10 +93,24 @@ function hideOverlay() {
   main.style.display = "block";
   nav.style.display = "block";
   overlay.style.display = "none";
+  //clear text fields of overlay
   pw.value = "";
   un.value = "";
-  //clear text fields of overlay
+}
 
+//login function
+function login() {
+  if (loggedIn == false) {
+    unEl = document.getElementById('userNameText');
+    un = unEl.value;
+    pwEl = document.getElementById('userNameText');
+    pw = pwEl.value;
+    if (un.length >= 5 && pw.length >= 5) {
+      loginOrName.generate(un);
+      loggedIn = true;
+      hideOverlay();
+    }
+  }
 }
 
 //start

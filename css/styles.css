@@ -151,12 +151,7 @@ a:active, #logo:active, #loginOrName:active {
   border-radius: 20px;
 }
 
-#exitOverlay:hover {
-  cursor: pointer;
-  color: #ff4da6;
-}
-
-#loginButton:hover {
+#loginButton:hover, #exitOverlay:hover {
   cursor: pointer;
   color: #ff4da6;
   border: 2px solid #ff4da6;
