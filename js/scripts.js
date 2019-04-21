@@ -24,8 +24,11 @@ var welcome = new Content("Welcom to jQuery jumpstart!", "siteIntroHeading");
 var siteIntroText = new Content("This site is intended to give you everything you need to start programming in jQuery provided you already know HTML, CSS and Java Script. It is not the end all be all to learning the language but more of a concise and effective way to start you off on experimenting with jQuery. Our 5 simple tutorials are on the bottom of the page. For more intensive tutorials and resources click one of the links below. Have fun!", "siteIntroText");
 var jQueryIntroHeading = new Content("What is jQuery?", "jQueryIntroHeading");
 var jQueryIntroText = new Content("A framework in regards to software development is essentially a library of code, but with added features that allow users to easily implement and interact with the items in the library. JQuery is a Java Script framework, it allows users to do certain things with HTML, CSS and Java Script much easier and faster than they'd be able to with just Java Script alone. To learn more click on the link below. We'll teach you how to get started in the tutorials near the bottom of the page. Enjoy!", "jQueryIntroText");
+var slide1Head = new Content("Linking pages to jQuery", "slideHeading");
+var slide1Text = new Content("This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.", "slideContent");
+var slide2Head = new Content("jQuery Syntax", "slideHeading");
 //push everything into an array.
-contentArray.push(logo, loginOrName, welcome, siteIntroText, jQueryIntroHeading, jQueryIntroText);
+contentArray.push(logo, loginOrName, welcome, siteIntroText, jQueryIntroHeading, jQueryIntroText, slide1Head, slide1Text);
 //end creating objects and loading array
 
 //page creation begins here
@@ -34,6 +37,8 @@ function init() {
     generateContent(i);
   }
   //add event handlers support old IE
+  //make function that takes, id , function name and parameter
+  // this will simplify things greatly. (callback functions)
   //login link to trigger overlays
   var loginOrName = document.getElementById('loginOrName');
   if (loginOrName.addEventListener) {
@@ -122,35 +127,27 @@ function loginOrOut() {
 
 //exit login / logout overlay
 function hideOverlay(direction) {
+  var nav = document.getElementById('nav');
+  var main = document.getElementById('main');
+  main.style.display = "block";
+  nav.style.display = "block";
   if (direction == "in") {
     var overlay = document.getElementById('loginOverlay');
-    var nav = document.getElementById('nav');
-    var main = document.getElementById('main');
     var un = document.getElementById('userNameText');
     var pw = document.getElementById('pwText');
-    main.style.display = "block";
-    nav.style.display = "block";
     overlay.style.display = "none";
     //clear text fields of overlay
     pw.value = "";
     un.value = "";
   } else if (direction == "out") {
-    var nav = document.getElementById('nav');
-    var main = document.getElementById('main');
     var logoutOverlay = document.getElementById('logoutOverlay');
     var loginOrName = document.getElementById('loginOrName');
-    main.style.display = "block";
-    nav.style.display = "block";
     loginOrName.textContent = "login";
     logoutOverlay.style.display = "none";
     loggedIn = false;
   } else if (direction == "cancel") {
     var logoutOverlay = document.getElementById('logoutOverlay');
     logoutOverlay.style.display = "none";
-    var nav = document.getElementById('nav');
-    var main = document.getElementById('main');
-    main.style.display = "block";
-    nav.style.display = "block";
   } else {
     alert("something went wrong, please reload the page.")
   }
