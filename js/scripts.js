@@ -15,6 +15,10 @@ function Content(textContent, containerId) {
     var content = document.createTextNode(someContent);
     container.appendChild(content);
   }
+  this.generateSlide = function() {
+    var container = document.getElementById(this.containerId);
+    container.textContent = this.textContent;
+  }
 }
 //end constructor
 
@@ -201,6 +205,7 @@ function login() {
 }
 
 //changeSlide
+//not the best but a switch statement is needed to meet project requirements.
 function changeSlide(e) {
   var target = getTarget(e);
   if (target.id == "forward") {
@@ -229,8 +234,32 @@ function getTarget(e) {
 }
 
 //generateSlide
+//not the best option but the project requires a switch statement.
 function generateSlide(slideState) {
-  alert(slideState);
+  switch (slideState) {
+    case 1:
+      slide1Head.generateSlide();
+      slide1Text.generateSlide();
+      break;
+    case 2:
+      slide2Head.generateSlide();
+      slide2Text.generateSlide();
+      break;
+    case 3:
+      slide3Head.generateSlide();
+      slide3Text.generateSlide();
+      break;
+    case 4:
+      slide4Head.generateSlide();
+      slide4Text.generateSlide();
+      break;
+    case 5:
+      slide5Head.generateSlide();
+      slide5Text.generateSlide();
+      break;
+    default:
+      alert("something is wrong, refresh site.");
+  }
 }
 
 
