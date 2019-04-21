@@ -10,14 +10,18 @@ function Content(textContent, containerId) {
   this.textContent = textContent;
   this.containerId = containerId;
   this.generate = function(someContent) {
+    var loginOrName = document.getElementById('loginOrName');
+    loginOrName.innerHTML = "";
     var container = document.getElementById(containerId);
-    container.textContent = "";
     var content = document.createTextNode(someContent);
     container.appendChild(content);
   }
   this.generateSlide = function() {
     var container = document.getElementById(this.containerId);
-    container.textContent = this.textContent;
+    var text = document.createTextNode(this.textContent);
+    container.innerHTML = "";
+    container.appendChild(text);
+
   }
 }
 //end constructor
@@ -178,7 +182,9 @@ function hideOverlay(direction) {
   } else if (direction == "out") {
     var logoutOverlay = document.getElementById('logoutOverlay');
     var loginOrName = document.getElementById('loginOrName');
-    loginOrName.textContent = "login";
+    var loginText = document.createTextNode("login");
+    loginOrName.innerHTML = "";
+    loginOrName.appendChild(loginText);
     logoutOverlay.style.display = "none";
     loggedIn = false;
   } else if (direction == "cancel") {
