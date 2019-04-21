@@ -44,9 +44,15 @@ function init() {
   //exit button for login overlay
   var exitOverlay = document.getElementById('exitOverlay');
   if (exitOverlay.addEventListener) {
-    exitOverlay.addEventListener('click', hideOverlay, false);
+    exitOverlay.addEventListener('click', function() {
+      var direction = "in";
+      hideOverlay(direction);
+    }, false);
   } else {
-    exitOverlay.attachEvent('onclick', hideOverlay);
+    exitOverlay.attachEvent('onclick', function() {
+      var direction = "in";
+      hideOverlay(direction);
+    });
   }
   //login button for overlays
   var loginButton = document.getElementById('loginButton');
@@ -56,8 +62,31 @@ function init() {
     loginButton.attachEvent('onclick', login);
   }
   //logout button (logoutButton)
-
-  //cancelButton
+  var logoutButton = document.getElementById('logoutButton');
+  if (logoutButton.addEventListener) {
+    logoutButton.addEventListener('click', function() {
+      direction = "out";
+      hideOverlay(direction);
+    }, false);
+  } else {
+    logoutButton.attachEvent('onclick', function() {
+      direction = "out";
+      hideOverlay(direction);
+    })
+  }
+  //cancelButton on loginOrOut
+  var cancelButton = document.getElementById('cancelButton');
+  if (cancelButton.addEventListener) {
+    cancelButton.addEventListener('click', function() {
+      direction = "cancel";
+      hideOverlay(direction);
+    }, false);
+  } else {
+    cancelButton.attachEvent('onclick', function() {
+      direction = "cancel";
+      hideOverlay(direction);
+    })
+  }
 
 }
 // end init
@@ -81,25 +110,50 @@ function loginOrOut() {
     overlay.style.display = "table";
   } else {
     //make window for logout and set its display here.
+    var nav = document.getElementById('nav');
+    var main = document.getElementById('main');
+    main.style.display = "none";
+    nav.style.display = "none";
     logout = document.getElementById('logoutOverlay');
     logout.style.display = "table";
   }
 }
 //end loginOrOut
 
-//exit login overlay
-function hideOverlay() {
-  var overlay = document.getElementById('loginOverlay');
-  var nav = document.getElementById('nav');
-  var main = document.getElementById('main');
-  var un = document.getElementById('userNameText');
-  var pw = document.getElementById('pwText');
-  main.style.display = "block";
-  nav.style.display = "block";
-  overlay.style.display = "none";
-  //clear text fields of overlay
-  pw.value = "";
-  un.value = "";
+//exit login / logout overlay
+function hideOverlay(direction) {
+  if (direction == "in") {
+    var overlay = document.getElementById('loginOverlay');
+    var nav = document.getElementById('nav');
+    var main = document.getElementById('main');
+    var un = document.getElementById('userNameText');
+    var pw = document.getElementById('pwText');
+    main.style.display = "block";
+    nav.style.display = "block";
+    overlay.style.display = "none";
+    //clear text fields of overlay
+    pw.value = "";
+    un.value = "";
+  } else if (direction == "out") {
+    var nav = document.getElementById('nav');
+    var main = document.getElementById('main');
+    var logoutOverlay = document.getElementById('logoutOverlay');
+    var loginOrName = document.getElementById('loginOrName');
+    main.style.display = "block";
+    nav.style.display = "block";
+    loginOrName.textContent = "login";
+    logoutOverlay.style.display = "none";
+    loggedIn = false;
+  } else if (direction == "cancel") {
+    var logoutOverlay = document.getElementById('logoutOverlay');
+    logoutOverlay.style.display = "none";
+    var nav = document.getElementById('nav');
+    var main = document.getElementById('main');
+    main.style.display = "block";
+    nav.style.display = "block";
+  } else {
+    alert("something went wrong, please reload the page.")
+  }
 }
 
 //login function
@@ -111,7 +165,7 @@ function login() {
   if ((un.length >= 5 && un.length <= 10) && (pw.length >= 5 && pw.length <= 10)) {
     loginOrName.generate(un);
     loggedIn = true;
-    hideOverlay();
+    hideOverlay("in");
   } else {
     alert("Both the username and password must be between 5-10 characters. Thank you.");
   }
