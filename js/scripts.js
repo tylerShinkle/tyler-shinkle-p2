@@ -2,6 +2,7 @@
 //array to hold conent objects // consider adding namespace to eliminate globals.
 var contentArray = [];
 var loggedIn = false;
+slideStatus = 1;
 //end globals
 
 //content object constructor
@@ -24,9 +25,17 @@ var welcome = new Content("Welcom to jQuery jumpstart!", "siteIntroHeading");
 var siteIntroText = new Content("This site is intended to give you everything you need to start programming in jQuery provided you already know HTML, CSS and Java Script. It is not the end all be all to learning the language but more of a concise and effective way to start you off on experimenting with jQuery. Our 5 simple tutorials are on the bottom of the page. For more intensive tutorials and resources click one of the links below. Have fun!", "siteIntroText");
 var jQueryIntroHeading = new Content("What is jQuery?", "jQueryIntroHeading");
 var jQueryIntroText = new Content("A framework in regards to software development is essentially a library of code, but with added features that allow users to easily implement and interact with the items in the library. JQuery is a Java Script framework, it allows users to do certain things with HTML, CSS and Java Script much easier and faster than they'd be able to with just Java Script alone. To learn more click on the link below. We'll teach you how to get started in the tutorials near the bottom of the page. Enjoy!", "jQueryIntroText");
+//slides , only 1 will be initially injected.
 var slide1Head = new Content("Linking pages to jQuery", "slideHeading");
-var slide1Text = new Content("This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.This is how your link jQuery.", "slideContent");
+var slide1Text = new Content("This is how your link jQuery. This is how your link jQuery. This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery. ", "slideContent");
 var slide2Head = new Content("jQuery Syntax", "slideHeading");
+var slide2Text = new Content("Syntax. Syntax.  Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax.  Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. ", "slideContent");
+var slide3Head = new Content("Selectors in jQuery", "slideHeading");
+var slide3Text = new Content("selectors. selectors. selectors. selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors.  selectors. ", "slideContent");
+var slide4Head = new Content("jQuery text()", "slideHeading");
+var slide4Text = new Content("This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works. This is how text() works.", "slideContent");
+var slide5Head = new Content("jQuery hide()", "slideHeading");
+var slide5Text = new Content("This is how hide Works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works. This is how hide works.", "slideContent");
 //push everything into an array.
 contentArray.push(logo, loginOrName, welcome, siteIntroText, jQueryIntroHeading, jQueryIntroText, slide1Head, slide1Text);
 //end creating objects and loading array
@@ -90,9 +99,32 @@ function init() {
     cancelButton.attachEvent('onclick', function() {
       direction = "cancel";
       hideOverlay(direction);
-    })
+    });
   }
 
+  //slide function needs to know target.
+  //forward
+  var forward = document.getElementById('forward');
+  if (forward.addEventListener) {
+    forward.addEventListener('click', function(e) {
+      changeSlide(e);
+    }, false);
+  } else {
+    forward.attachEvent('onclick', function(e) {
+      changeSlide(e);
+    });
+  }
+  //back
+  var back = document.getElementById('back');
+  if (back.addEventListener) {
+    back.addEventListener('click', function(e) {
+      changeSlide(e);
+    }, false);
+  } else {
+    back.attachEvent('onclick', function(e) {
+      changeSlide(e);
+    });
+  }
 }
 // end init
 
@@ -166,6 +198,39 @@ function login() {
   } else {
     alert("Both the username and password must be between 5-10 characters. Thank you.");
   }
+}
+
+//changeSlide
+function changeSlide(e) {
+  var target = getTarget(e);
+  if (target.id == "forward") {
+    if (slideStatus >= 5) {
+      return;
+    } else {
+      slideStatus++;
+      generateSlide(slideStatus);
+    }
+  } else {
+    if (slideStatus <= 1) {
+      return;
+    } else {
+      slideStatus--;
+      generateSlide(slideStatus);
+    }
+  }
+}
+
+//getTarget
+function getTarget(e) {
+  if (!e) {
+    e = window.event;
+  }
+  return e.target || e.srcElement;
+}
+
+//generateSlide
+function generateSlide(slideState) {
+  alert(slideState);
 }
 
 
