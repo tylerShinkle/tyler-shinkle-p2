@@ -55,6 +55,9 @@ function init() {
   } else {
     loginButton.attachEvent('onclick', login);
   }
+  //logout button (logoutButton)
+
+  //cancelButton
 
 }
 // end init
@@ -78,7 +81,8 @@ function loginOrOut() {
     overlay.style.display = "table";
   } else {
     //make window for logout and set its display here.
-    alert("Goodbye");
+    logout = document.getElementById('logoutOverlay');
+    logout.style.display = "table";
   }
 }
 //end loginOrOut
@@ -100,18 +104,19 @@ function hideOverlay() {
 
 //login function
 function login() {
-  if (loggedIn == false) {
-    unEl = document.getElementById('userNameText');
-    un = unEl.value;
-    pwEl = document.getElementById('userNameText');
-    pw = pwEl.value;
-    if (un.length >= 5 && pw.length >= 5) {
-      loginOrName.generate(un);
-      loggedIn = true;
-      hideOverlay();
-    }
+  unEl = document.getElementById('userNameText');
+  un = unEl.value;
+  pwEl = document.getElementById('pwText');
+  pw = pwEl.value;
+  if ((un.length >= 5 && un.length <= 10) && (pw.length >= 5 && pw.length <= 10)) {
+    loginOrName.generate(un);
+    loggedIn = true;
+    hideOverlay();
+  } else {
+    alert("Both the username and password must be between 5-10 characters. Thank you.");
   }
 }
+
 
 //start
 init();
