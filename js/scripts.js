@@ -2,7 +2,7 @@
 //array to hold conent objects // consider adding namespace to eliminate globals.
 var contentArray = [];
 var loggedIn = false;
-slideStatus = 1;
+var slideStatus = 1;
 //end globals
 
 //content object constructor
@@ -18,9 +18,8 @@ function Content(textContent, containerId) {
   }
   this.generateSlide = function() {
     var container = document.getElementById(this.containerId);
-    var text = document.createTextNode(this.textContent);
     container.innerHTML = "";
-    container.appendChild(text);
+    container.innerHTML = this.textContent;
 
   }
 }
@@ -34,8 +33,13 @@ var siteIntroText = new Content("This site is intended to give you everything yo
 var jQueryIntroHeading = new Content("What is jQuery?", "jQueryIntroHeading");
 var jQueryIntroText = new Content("A framework in regards to software development is essentially a library of code, but with added features that allow users to easily implement and interact with the items in the library. JQuery is a Java Script framework, it allows users to do certain things with HTML, CSS and Java Script much easier and faster than they'd be able to with just Java Script alone. To learn more click on the link below. We'll teach you how to get started in the tutorials near the bottom of the page. Enjoy!", "jQueryIntroText");
 //slides , only 1 will be initially injected.
+
+//slide 1
 var slide1Head = new Content("Linking pages to jQuery", "slideHeading");
-var slide1Text = new Content("This is how your link jQuery. This is how your link jQuery. This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery.  This is how your link jQuery. ", "slideContent");
+var slide1Text = new Content(
+  "First, before you use jQuery you must link your pages to a jQuery file so your calls to jQuery functions and events have something to reference. You can do this in two ways. First off, you could download jQuery, place it in the same directory as your pages and create a script tag in the head that references it, make sure that the jQuery script tag precedes any scripts that will refer to it. For instance it should look something like this...<br><br>&lt;head&gt;<br>&emsp;&lt;script=&quot;js/jquery-3.3.1.min.js&quot;&gt;<br>&emsp;&lt;script=&quot;js/yourScript.js&quot;&gt;<br>&lt;/head&gt;<br><br>You can also put your script at the end of the body, as long as the jQuery tag is above it.<br><br>The second option is that you could add a script tag in the head of your page that uses a CDN or Content Delivery Network. This way you don't need to download the file. If that is what you want to do replace the jQuery script tag in the above example with one of these...<br><br>Google CDN:<br><br>&lt;script=&quot;js/https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js&quot;&gt;<br><br>Microsoft CDN:<br><br>&lt;script=&quot;js/https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js&quot;&gt;<br><br>Once you have a HTML file with the proper links you can start using jQuery to modify it. Click the right arrow below to go to the next lesson.", "slideContent"
+);
+//slide 2
 var slide2Head = new Content("jQuery Syntax", "slideHeading");
 var slide2Text = new Content("Syntax. Syntax.  Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax.  Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. Syntax. ", "slideContent");
 var slide3Head = new Content("Selectors in jQuery", "slideHeading");
@@ -54,9 +58,11 @@ function init() {
     generateContent(i);
   }
   //add event handlers support old IE
+  //maybe...
   //make function that takes, id , function name and parameter
   // this will simplify things greatly. (callback functions)
-  //login link to trigger overlays
+  //do later if cant find solution in time for due date. (a function that adds event listeners with the parameters(id,event,function,parameters))
+  //login link to trigger overlays.
   var loginOrName = document.getElementById('loginOrName');
   if (loginOrName.addEventListener) {
     loginOrName.addEventListener('click', loginOrOut, false);
@@ -139,8 +145,7 @@ function init() {
 //load content into page.
 function generateContent(index) {
   var container = document.getElementById(contentArray[index].containerId);
-  var content = document.createTextNode(contentArray[index].textContent);
-  container.appendChild(content);
+  container.innerHTML = contentArray[index].textContent;
 }
 //end generate function
 
