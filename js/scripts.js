@@ -29,9 +29,9 @@ function Content(textContent, containerId) {
 var logo = new Content("jQuery jumpstart", "logo");
 var loginOrName = new Content("login", "loginOrName")
 var welcome = new Content("Welcom to jQuery jumpstart!", "siteIntroHeading");
-var siteIntroText = new Content("This site is intended to give you everything you need to start programming in jQuery provided you already know HTML, CSS and Java Script. It is not the end all be all to learning the language but more of a concise and effective way to start you off on experimenting with jQuery. Our 5 simple tutorials are on the bottom of the page. For more intensive tutorials and resources click one of the links below. Have fun!", "siteIntroText");
+var siteIntroText = new Content("This site is intended to give you everything you need to start programming in jQuery provided you already know HTML, CSS and Java Script. It is not the end all be all to learning the language but more of a concise and effective way to start you off on experimenting with jQuery. Our 5 simple tutorials are on the bottom of the page. For more intensive tutorials and resources click one of the links below.", "siteIntroText");
 var jQueryIntroHeading = new Content("What is jQuery?", "jQueryIntroHeading");
-var jQueryIntroText = new Content("A software library is a software collection of items such as functions and objects. That's what jQuery is, a Java Script library. There are many functions and objects within this library and you can access them and use them to make your life easier, for instance jQuery is all about cross compatibility, lessen your struggle while supporting all major browsers. You can do a lot of things with HTML, CSS and Javascript much faster and easier with jQuery. Clean, readable code is alway nice too, with jQuery there is far less typing and code to sift through. The Java Script library known as jQuery will make your life much easier! Enjoy!", "jQueryIntroText");
+var jQueryIntroText = new Content("A software library is a software collection of items such as functions and objects. That's what jQuery is, a Java Script library. There are many functions and objects within this library and you can access them and use them to make your life easier, for instance jQuery is all about cross compatibility, lessen your struggle while supporting all major browsers. You can do a lot of things with HTML, CSS and Javascript much faster and easier with jQuery. Clean, readable code is alway nice too, with jQuery there is far less typing and code to sift through. The Java Script library known as jQuery will make your life much easier!", "jQueryIntroText");
 //slides , only 1 will be initially injected.
 
 //slide 1
@@ -64,6 +64,17 @@ function init() {
   for (var i = 0; i < contentArray.length; i++) {
     generateContent(i);
   }
+
+  //create paragraph elements to be injected because project requires it.
+  funContainer = document.getElementById("siteIntroText");
+  fun = document.createElement("p");
+  fun.textContent = "Have fun!";
+  funContainer.appendChild(fun);
+
+  enjoyContainer = document.getElementById("jQueryIntroText");
+  enjoy = document.createElement("p");
+  enjoy.textContent = "Enjoy!";
+  enjoyContainer.appendChild(enjoy);
   //add event handlers support old IE
   //maybe...
   //make function that takes, id , function name and parameter
